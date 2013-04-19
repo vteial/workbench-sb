@@ -1,6 +1,6 @@
 package learning.general;
 
-public class EvenOrOdd {
+public class EvenOrOddTest {
 
 	public static void main(String args[]) {
 

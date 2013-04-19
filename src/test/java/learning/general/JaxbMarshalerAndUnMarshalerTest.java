@@ -1,6 +1,6 @@
 package learning.general;
 
-public class JaxbMarshalerAndUnMarshaler {
+public class JaxbMarshalerAndUnMarshalerTest {
 
 	public static void main(String[] args) {
 	}
