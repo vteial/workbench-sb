@@ -52,4 +52,4 @@ reverseArray2(items);
 println "Reverse Version 2 : $items";
 
 reverseArray3(items);
-println "Reverse Version 2 : $items";
+println "Reverse Version 3 : $items";
