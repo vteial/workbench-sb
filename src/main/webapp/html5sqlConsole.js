@@ -9,6 +9,8 @@ app.controller('html5sqlConsoleController', function($scope) {
 	$scope.records = records;
 	$scope.query = query;
 	$scope.message = message;
+	$scope.result = false;
+	$scope.console = true;
 
 	try {
 		html5sql.openDatabase("html5sqlConsoleDb", "HTML4SQL Console Database",
@@ -30,7 +32,6 @@ app.controller('html5sqlConsoleController', function($scope) {
 		records = [];
 		query = $scope.query.toLowerCase();
 		message = 'Query : ' + query;
-		//console.log(message);
 		
 		if (query.match(/^select.*/)) {
 			html5sql.process([ query ],
@@ -51,9 +52,10 @@ app.controller('html5sqlConsoleController', function($scope) {
 							message += '\n';
 						}
 						$scope.$apply(function() {
-							$scope.message = message;
 							$scope.columns = columns;
 							$scope.records = records;
+							$scope.message = message;
+							$scope.result = true;
 						});
 						console.log($scope.message);
 						
@@ -63,18 +65,20 @@ app.controller('html5sqlConsoleController', function($scope) {
 								+ " when processing " + statement;
 						$scope.$apply(function() {
 							$scope.message = message;
+							$scope.console = true;
 						});
 						console.log($scope.message);
 						
 					});
 
 		} else {
-
+			
 			html5sql.process([ query ], function() {
 				
 				var message = 'Success : ' + query;
 				$scope.$apply(function() {
 					$scope.message = message;
+					$scope.console = true;
 				});
 				console.log($scope.message);
 				
@@ -84,6 +88,7 @@ app.controller('html5sqlConsoleController', function($scope) {
 						+ statement;
 				$scope.$apply(function() {
 					$scope.message = message;
+					$scope.console = true;
 				});
 				console.log($scope.message);
 				
