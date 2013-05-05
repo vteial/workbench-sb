@@ -30,7 +30,7 @@
 					<a href="index"><i class="icon-home icon-white"></i></a>
 				</li>
 				<li class="active">
-					<a href="html5sqlConsole.html">HTML5SQLConsole</a>
+					<a href="html5sqlConsole.html">HTML5 SQL Console</a>
 				</li>
 				<li>
 					<a href="treeTable.html">Tree Table</a>
@@ -49,20 +49,82 @@
 <div class="container" ng-controller="html5sqlConsoleController">
 	<div class="row-fluid">
   		<b>Query : &nbsp;&nbsp;&nbsp;&nbsp;</b>
-  		<textarea class="span10" rows="3" ng-model="html5sqlConsole.query">
-		</textarea>
+  		<textarea class="span10" rows="3" ng-model="query"></textarea>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<button class="btn btn-primary" ng-click="run()"><i class="icon-play-circle"></i>&nbsp;&nbsp;Run</button>
 	</div>
-	<pre ng-model="html5sqlConsole.message">{{html5sqlConsole.message}}</pre>
-	<pre>
-# Sample SQL Queries
-CREATE TABLE example (id INTEGER PRIMARY KEY, data TEXT);
-INSERT INTO example (data) VALUES ('First');
-INSERT INTO example (data) VALUES ('Second');
-INSERT INTO example (data) VALUES ('Third');
-SELECT * FROM example;
-	</pre>
+	
+	<p><b>Last Query : </b>{{query}}</p>
+	
+	<tabs>
+	
+	<pane heading="Result">
+	<div>
+		<table class="table table-striped table-condensed table-hover table-bordered">
+		<thead>
+		<tr>
+			<th width="30">#</th>
+	    	<th ng-repeat="column in columns">
+	    		{{column}}&nbsp;&nbsp;&nbsp;&nbsp;
+	  		</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="record in records">
+			<td>{{$index + 1}}</td>
+			<td ng-repeat="column in columns">{{record[column]}}</td>
+		</tr>
+		</tbody>
+		</table>
+	</div>
+	</pane>
+	
+	<pane heading="Console">
+	<div>
+		<pre ng-model="message">{{message}}</pre>
+	</div>
+	</pane>
+	
+	<pane heading="Help">
+	<div>
+		<pre>
+-- Sample SQL's
+
+create table user(
+  id varchar(50) not null,	
+  password varchar(20) not null,	
+  name varchar(30) not null,	
+  emailId varchar(100) not null,	
+  parentId varchar(100), 
+  constraint user_pk0 primary key(id)
+);
+create unique index user_ui0 ON user(id);
+insert into user (id, password, name, emailId) values ('vteial', 'pwd123', 'Eialarasu', 'vteial@localhost.com');
+insert into user (id, password, name, emailId, parentId) values ('ramesh', 'pwd123', 'Ramesh', 'ramesh@localhost.com', 'vteial');
+insert into user (id, password, name, emailId, parentId) values ('arjun', 'pwd123', 'Arjun', 'arjun@localhost.com', 'vteial');
+select * from user;
+
+create table example(
+	id integer, 
+	data text not null,
+	constraint example_pk0 primary key(id)
+);
+insert into example (data) values ('first');
+insert into example (data) values ('second');
+insert into example (data) values ('third');
+select * FROM example;
+
+delete from user;
+delete from example
+
+drop table user;
+drop table example;
+		</pre>
+	</div>
+	</pane>
+	
+	</tabs>
+	
 </div>
 
 <div class="container">

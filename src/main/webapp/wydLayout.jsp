@@ -37,7 +37,7 @@
 					<a href="index"><i class="icon-home icon-white"></i></a>
 				</li>
 				<li>
-					<a href="html5sqlConsole.html">HTML5SQLConsole</a>
+					<a href="html5sqlConsole.html">HTML5 SQL Console</a>
 				</li>
 				<li>
 					<a href="treeTable.html">Tree Table</a>
