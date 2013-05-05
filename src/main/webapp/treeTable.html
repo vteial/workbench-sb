@@ -1,6 +1,6 @@
 <html lang="en" ng-app="myworkbench">
 <head>
-	<title>MyWorkbench - HTML5SQL Console</title>
+	<title>MyWorkbench - Tree Table</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
@@ -29,10 +29,10 @@
 				<li>
 					<a href="index"><i class="icon-home icon-white"></i></a>
 				</li>
-				<li class="active">
+				<li>
 					<a href="html5sqlConsole.html">HTML5SQLConsole</a>
 				</li>
-				<li>
+				<li class="active">
 					<a href="treeTable.html">Tree Table</a>
 				</li>
 			</ul>
@@ -46,32 +46,11 @@
 	</div>
 </div>
 
-<div class="container" ng-controller="html5sqlConsoleController">
-	<div class="row-fluid">
-  		<b>Query : &nbsp;&nbsp;&nbsp;&nbsp;</b>
-  		<textarea class="span10" rows="3" ng-model="html5sqlConsole.query">
-		</textarea>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<button class="btn btn-primary" ng-click="run()"><i class="icon-play-circle"></i>&nbsp;&nbsp;Run</button>
-	</div>
-	<pre ng-model="html5sqlConsole.message">{{html5sqlConsole.message}}</pre>
-	<pre>
-# Sample SQL Queries
-CREATE TABLE example (id INTEGER PRIMARY KEY, data TEXT);
-INSERT INTO example (data) VALUES ('First');
-INSERT INTO example (data) VALUES ('Second');
-INSERT INTO example (data) VALUES ('Third');
-SELECT * FROM example;
-	</pre>
+<div class="container" ng-controller="treeTableController">
+
 </div>
 
 <div class="container">
-   <p align="center">
-	   References : 
-	   <a href="http://www.zentut.com/sql-tutorial/sql-cheat-sheet/">SQL Cheatsheet</a>, 
-	   <a href="http://sqlite.org/lang.html">SQLite Lang</a>, 
-	   <a href="http://html5sql.com/">HTML5SQL</a>
-   </p>
    <p align="center">
    		Built using 
 	   <a href="http://twitter.github.io/bootstrap/">Twitter Bootstrap</a>, 
@@ -81,7 +60,7 @@ SELECT * FROM example;
    </p>
 </div>
  
-<script src="html5sqlConsole.js" type="text/javascript"></script>
+<script src="treeTable.js" type="text/javascript"></script>
 
 </body>
 </html>

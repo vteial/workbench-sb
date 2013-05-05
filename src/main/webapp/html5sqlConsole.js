@@ -1,4 +1,4 @@
-var app = angular.module('html5sqlConsole', [ 'ui.bootstrap' ]);
+var app = angular.module('myworkbench', [ 'ui.bootstrap' ]);
 
 app.controller('html5sqlConsoleController', function($scope) {
 
