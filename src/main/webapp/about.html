@@ -73,7 +73,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr ng-repeat="requestProp in requestProps|filter:requestQuery">
+			<tr ng-repeat="requestProp in requestProps | filter:requestQuery | orderBy:'key'">
 				<td>{{$index + 1}}</td>
 				<td>{{requestProp.key}}</td>
 				<td>{{requestProp.value}}</td>
@@ -107,7 +107,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr ng-repeat="contextProp in contextProps|filter:contextQuery">
+			<tr ng-repeat="contextProp in contextProps | filter:contextQuery | orderBy:'key'">
 				<td>{{$index + 1}}</td>
 				<td>{{contextProp.key}}</td>
 				<td>{{contextProp.value}}</td>
@@ -141,7 +141,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr ng-repeat="systemProp in systemProps|filter:systemQuery">
+			<tr ng-repeat="systemProp in systemProps | filter:systemQuery | orderBy:'key'">
 				<td>{{$index + 1}}</td>
 				<td>{{systemProp.key}}</td>
 				<td>{{systemProp.value}}</td>
@@ -175,7 +175,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr ng-repeat="jvmProp in jvmProps|filter:jvmQuery">
+			<tr ng-repeat="jvmProp in jvmProps | filter:jvmQuery | orderBy:'key'">
 				<td>{{$index + 1}}</td>
 				<td>{{jvmProp.key}}</td>
 				<td>{{jvmProp.value}}</td>
@@ -189,16 +189,8 @@
 
 </div>
  
- <div class="container">
-   <p align="center">
-   		Built using 
-	   <a href="http://twitter.github.io/bootstrap/">Twitter Bootstrap</a>, 
-	   <a href="http://angularjs.org/">AngularJS</a>, 
-	   <a href="http://angular-ui.github.com/">AugularUI</a> and 
-	   <a href="http://angular-ui.github.com/bootstrap">AugularUI Bootstrap</a> 
-   </p>
-</div>
-
+<ng-include src="'wydFooter.html'"></ng-include>
+ 
 <script src="about.js" type="text/javascript"></script>
 
 </body>

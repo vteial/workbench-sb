@@ -57,12 +57,7 @@
 %>
 
 <div class="container">
-   <p align="center">
-   		Built using 
-	   <a href="http://twitter.github.io/bootstrap/">Twitter Bootstrap</a>,
-	   <a href="http://www.jquery.com/">JQuery</a> and 
-	   <a href="http://www.springsource.org/spring-framework/">Spring Framework</a> 
-   </p>
+	<%@ include file="wydFooter.html" %> 
 </div>
 
 </body>

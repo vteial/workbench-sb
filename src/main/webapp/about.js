@@ -1,27 +1,42 @@
-var app = angular.module('myworkbench', [ 'ui.bootstrap' ]);
-
-app.controller('aboutController', function($scope, $log, $http) {
-	$scope.name = 'aboutController';
-
-	$scope.requestProps = [];
-	$http.get('about/request').success(function(data) {
-		$scope.requestProps = data;
+var app = angular.module('aboutService', [ 'ngResource' ]);
+app.factory('requestProps', function($resource) {
+	return $resource('about/request', {}, {
+		get : {
+			method : 'GET',
+			isArray : true
+		}
 	});
+});
+
+app.factory('systemProps', function($resource) {
+	return $resource('about/system', {}, {
+		get : {
+			method : 'GET',
+			isArray : true
+		}
+	});
+});
+
+app.factory('jvmProps', function($resource) {
+	return $resource('about/jvm', {}, {
+		get : {
+			method : 'GET',
+			isArray : true
+		}
+	});
+});
+
+angular.module('myworkbench', [ 'ui.bootstrap', 'aboutService' ]);
+
+app.controller('aboutController', function($scope, requestProps, systemProps,
+		jvmProps) {
+
+	$scope.requestProps = requestProps.get();
 
 	$scope.contextProps = [];
-	// $http.get('about/context').success(function(data) {
-	// $scope.contextProps = data;
-	// });
 
-	$scope.systemProps = [];
-	$http.get('about/system').success(function(data) {
-		$scope.systemProps = data;
-	});
+	$scope.systemProps = systemProps.get();
 
-	$scope.jvmProps = [];
-	$http.get('about/jvm').success(function(data) {
-		$scope.jvmProps = data;
-	});
+	$scope.jvmProps = jvmProps.get();
 
-	$log.info('aboutController...');
 });
