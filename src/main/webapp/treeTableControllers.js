@@ -5,15 +5,19 @@ app.controller('treeTableController', function($scope, userDaoLocal) {
 
 	var userDao = userDaoLocal;
 
-	userDao.findAll(function(records) {
-		$scope.users = records;
-		$scope.$apply();
-	});
+	function findAll() {
+		userDao.findAll(function(records) {
+			$scope.users = records;
+			$scope.$apply();
+		});
+	}
+	
+	$scope.refresh = function() {
+		findAll();
+	};
 
 	$scope.addUser = function() {
-		userDao.addUser($scope.user);
-		alertService.add('success', $scope.user.userId
-				+ ' successfully added...');
+		userDao.addUser($scope.user, findAll);
 		$scope.user = {};
 	};
 
@@ -23,22 +27,25 @@ app.controller('treeTableController', function($scope, userDaoLocal) {
 	};
 
 	$scope.editUserByUserId = function(userId) {
-		var user = userDao.findById(userId);
-		$scope.editUser(user);
+		userDao.findById(userId, function(user){
+			if(user) {
+				$scope.editUser(user);	
+				$scope.$apply();
+			} else {
+				console.log(userId + " doesn't exist...");
+			}
+		});
 	};
 
 	$scope.updateUser = function() {
-		userDao.updateUser($scope.user);
+		userDao.updateUser($scope.user, findAll);
 		$scope.action = 'add';
-		console.message('success', $scope.user.userId
-				+ ' successfully updated...');
 		$scope.user = {};
 	};
 
 	$scope.deleteUser = function(user) {
-		userDao.deleteUser(user);
-		console.message('success', $scope.user.userId
-				+ ' successfully removed...');
+		userDao.deleteUser(user, findAll);
 	};
 
+	findAll();
 });

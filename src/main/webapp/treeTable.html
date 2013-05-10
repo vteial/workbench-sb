@@ -52,7 +52,7 @@
 -->
 <div class="container" ng-controller="treeTableController">
 
-<form class="form-inline well">
+<form class="form-inline well well-small">
 	<label>
 		User Id : <input type="text" class="input-small" placeholder="User Id" ng-model="user.user_id">
 	</label>
@@ -72,7 +72,15 @@
   	<button class="btn btn-primary btn-mini" ng-show="action=='add'" ng-click="addUser()"><i class="icon-plus"></i> Add</button>
   	<button class="btn btn-primary btn-mini" ng-show="action=='update'" ng-Click="updateUser()"><i class="icon-save"></i> Update</button>
 </form>
- 
+
+<div class="input-prepend input-append span8">
+	<span class="add-on">Search : </span>
+	<input class="input-block-level" type="text" ng-model="query">
+	<span class="add-on">
+		Total : <span ng-show="query.length"><strong>{{(users|filter:query).length}}</strong> out of </span><strong>{{users.length}}</strong>
+	</span>
+</div>
+
 <table class="table table-striped table-condensed table-hover table-bordered">
 <thead>
 <tr>
@@ -86,7 +94,7 @@
 </tr>
 </thead>
 <tbody>
-<tr ng-repeat="user in users">
+<tr ng-repeat="user in users | filter:query">
 	<td>{{$index + 1}}</td>
 	<td><a href="#" ng-click="editUser(user)">{{user.user_id}}</a></td>
 	<td>{{user.password}}</td>

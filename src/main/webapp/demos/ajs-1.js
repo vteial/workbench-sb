@@ -3,7 +3,7 @@ var app = angular.module("myworkbench", []);
 app.controller('appController', function($scope) {
 
 	try {
-		html5sql.openDatabase("html5sqlConsoleDb", "HTML4SQL Console Database",
+		html5sql.openDatabase("html5sqlConsoleDb", "HTML5SQL Console Database",
 				1 * 1024 * 1024);
 		html5sql.logInfo = true;
 		html5sql.logErrors = true;
