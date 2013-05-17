@@ -4,6 +4,7 @@ app.controller('html5sqlConsoleController', function($scope) {
 
 	$scope.columns = [];
 	$scope.records = [];
+	$scope.recentQueries = [];
 	$scope.query = 'select * from user';
 	$scope.queries = [ $scope.query ];
 	$scope.message = '';
@@ -50,6 +51,13 @@ app.controller('html5sqlConsoleController', function($scope) {
 			$scope.records = records;
 		}
 		$scope.message = message;
+
+		var index = $scope.recentQueries.indexOf($scope.query);
+		if(index != -1) {
+			$scope.recentQueries.splice(index, 1);
+		}
+		$scope.recentQueries.unshift($scope.query);
+		
 		$scope.tabs.result = true;
 		$scope.$apply();
 		console.log($scope.message);
@@ -59,6 +67,13 @@ app.controller('html5sqlConsoleController', function($scope) {
 		$scope.queries.push($scope.query);
 		var message = 'Success : ' + $scope.query;
 		$scope.message = message;
+		
+		var index = $scope.recentQueries.indexOf($scope.query);
+		if(index != -1) {
+			$scope.recentQueries.splice(index, 1);
+		}
+		$scope.recentQueries.unshift($scope.query);
+		
 		$scope.tabs.console = true;
 		$scope.$apply();
 		console.log($scope.message);
